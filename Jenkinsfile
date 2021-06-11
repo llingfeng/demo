@@ -1,7 +1,9 @@
 pipeline {
     stages {
         stage('build') {
-            agent none
+            agent {
+            
+            }
             steps {
                 sh 'git --version'
             }
