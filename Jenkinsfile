@@ -11,7 +11,7 @@ pipeline{
       }
       post{
         success {
-          echo "开始存档......"
+          echo "build success......"
           archiveArtifacts artifacts: "**/target/*.jar"
         }
       }
