@@ -1,19 +1,19 @@
 pipeline{
   agent any
+  tools{
+    maven "maven"
+  }
   stages{
-    stage("Init"){
-      steps{
-        echo "Initing......"
-      }
-    }
     stage("Build"){
       steps{
-        echo "Building....."
+        echo "Initing......"
+        sh "mvn clean package"
       }
-    }
-    stage("Deploy"){
-      steps{
-        echo "Deploying......"
+      post{
+        success {
+          echo "开始存档......"
+          archiveArtifacts artifacts: "**/target/*.war"
+        }
       }
     }
   }
