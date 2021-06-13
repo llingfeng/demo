@@ -8,22 +8,22 @@ pipeline {
                 }
             }
             steps {
-                sh $( mvn -s /var/jenkins_home/setting.xml clean package )
+                sh "mvn -s /var/jenkins_home/setting.xml clean package"
             }
         }
         stage("Create Docker Image"){
             steps {
-                sh $( docker build -t app-demo:latest . )
+                sh "docker build -t app-demo:latest ."
             }
         }
         stage("Run Application") {
             steps {
-                sh $(
-                    if [ docker ps -a | grep -i app-demo]; then \
-                        docker rm -f app-demo \
-                    if \
+                '''
+                    if [ docker ps -a | grep -i app-demo]; then
+                        docker rm -f app-demo
+                    if
                     docker run --name app-demo -d -p 9527:9527 app-demo:latest
-                )
+                '''
             }
         }
     }
