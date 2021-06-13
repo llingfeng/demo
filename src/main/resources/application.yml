@@ -1,4 +1,4 @@
 server:
-  port: 9527
+  port: 5000
   servlet:
     context-path: /demo
