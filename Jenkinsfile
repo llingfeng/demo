@@ -9,7 +9,7 @@ pipeline {
       }
       steps {
         sh "mvn -version"
-        sh "mvn clean package"
+        sh "mvn -s /var/jenkins_home/setting.xml clean package"
         sh "docker --version"
       }
     }
