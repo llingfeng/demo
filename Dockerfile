@@ -1,6 +1,6 @@
 FROM java:8
 
-RUN echo $PWD
+RUN ls
 
 COPY ./target/*.jar /app.jar
 
