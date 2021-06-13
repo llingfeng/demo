@@ -1,17 +1,31 @@
 pipeline {
-  agent any
-  stages {
-    stage("Build") {
-      agent {
-        docker {
-          image 'maven:3.8.1-openjdk-17'
+    agent any
+    stages {
+        stage("Build") {
+            agent {
+                docker {
+                    image 'maven:3.8.1-openjdk-17'
+                }
+            }
+            steps {
+                sh "mvn -s /var/jenkins_home/setting.xml clean package"
+            }
         }
-      }
-      steps {
-        sh "mvn -version"
-        sh "mvn -s /var/jenkins_home/setting.xml clean package"
-        sh "docker --version"
-      }
+        stage("Create Docker Image"){
+            steps {
+                sh "docker build -t app-demo:latest ."
+            }
+        }
+        stage("Run Application") {
+            steps {
+                sh
+                "
+                    if [ docker ps -a | grep -i app-demo]; then
+                        docker rm -f app-demo
+                    if
+                    docker run --name app-demo -d -p 9527:9527 app-demo:latest
+                "
+            }
+        }
     }
-  }
 }
