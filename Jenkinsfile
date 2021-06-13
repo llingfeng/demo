@@ -19,7 +19,7 @@ pipeline {
         stage("Run Application") {
             steps {
                 sh 'docker container ls -a -f name=app-demo -q|xargs -r docker rm -f'
-                sh 'docker run --name app-demo -d -p 9527:9527 app-demo:latest'
+                sh 'docker run --name app-demo -p 9527:9527 app-demo:latest'
             }
         }
     }
