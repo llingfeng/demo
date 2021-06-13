@@ -18,7 +18,7 @@ pipeline {
         }
         stage("Run Application") {
             steps {
-                sh
+                sh \
                 '''
                     if [ docker ps -a | grep -i app-demo]; then
                         docker rm -f app-demo
