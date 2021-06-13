@@ -1,5 +1,7 @@
 FROM java:8
 
+RUN echo $PWD
+
 COPY ./target/demo-0.0.1-SNAPSHOT.jar /app.jar
 
 EXPOSE 5000
