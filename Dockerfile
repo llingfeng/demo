@@ -1,6 +1,6 @@
 FROM java:8
 
-RUN ls
+RUN ls /var/jenkins_home/workspace
 
 COPY ./target/*.jar /app.jar
 
