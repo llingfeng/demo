@@ -13,6 +13,7 @@ pipeline {
         }
         stage("Create Docker Image"){
             steps {
+                sh "docker rmi -f app-demo:latest"
                 sh "docker build -t app-demo:latest ."
             }
         }
