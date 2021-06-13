@@ -20,8 +20,10 @@ pipeline {
             steps {
                 sh \
                 '''
-                    echo 213
-                    echo 321
+                    if [ ! -z docker ps -a | grep -i app-demo]; then
+                        docker rm -f app-demo
+                    fi
+                    docker run --name app-demo -d -p 9527:9527 app-demo:latest
                 '''
             }
         }
