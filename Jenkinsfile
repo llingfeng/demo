@@ -16,5 +16,14 @@ pipeline {
                 sh "docker build -t app-demo:latest ."
             }
         }
+        stage("Run Application") {
+            steps {
+                sh \
+                '''
+                    echo 213
+                    echo 321
+                '''
+            }
+        }
     }
 }
