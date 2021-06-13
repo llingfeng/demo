@@ -20,6 +20,7 @@ pipeline {
             steps {
                 sh \
                 '''
+                    # !/bin/bash
                     container=$( docker ps -a | grep -i "app-demo" )
                     if [ ! -z "$container" ]; then
                         docker rm -f app-demo
