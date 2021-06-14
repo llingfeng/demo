@@ -14,14 +14,14 @@ pipeline {
         stage("Create Docker Image"){
             agent any
             steps {
-                sh "docker build -t app-demo:latest ."
+                sh "docker build -t app-demo:${env.BUILD_ID} ."
             }
         }
         stage("Run Application") {
             agent any
             steps {
                 sh 'docker container ls -a -f name=app-demo -q|xargs -r docker rm -f'
-                sh 'docker run --name app-demo -d -p 5000:5000 app-demo:latest'
+                sh 'docker run --name app-demo -d -p 5000:5000 app-demo:${env.BUILD_ID}'
             }
         }
     }
