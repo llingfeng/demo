@@ -11,7 +11,7 @@ public class MainController {
 
     @RequestMapping("test")
     public Object test() {
-        return "123";
+        return "hello";
     }
 
 }
